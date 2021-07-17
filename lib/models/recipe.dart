@@ -1,18 +1,18 @@
 class Recipe {
-  String title;
-  String photo;
-  String pork;
-  String preparingTime;
-  String ingredients;
-  String preparationMode;
+  String? title;
+  String? photo;
+  String? pork;
+  String? preparingTime;
+  String? ingredients;
+  String? preparationMode;
 
   Recipe(
-      {required this.title,
-        required this.photo,
-        required this.pork,
-        required this.preparingTime,
-        required this.ingredients,
-        required this.preparationMode});
+      {this.title,
+        this.photo,
+        this.pork,
+        this.preparingTime,
+        this.ingredients,
+        this.preparationMode});
 
   Recipe.fromJson(Map<String, dynamic> json) {
     title = json['title'];

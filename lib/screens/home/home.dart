@@ -23,21 +23,23 @@ class HomeState extends State<Home> {
   }
 
   Widget _buildCardList() {
-    return FutureBuilder(future: DefaultAssetBundle.of(context).loadString('assets/recipe.json'),
-    builder: (context, snapshot) {
-      List<dynamic> recipe = json.decode(snapshot.data.toString());
+    return FutureBuilder(
+      future: DefaultAssetBundle.of(context).loadString('assets/recipe.json'),
+      builder: (context, snapshot) {
+        List<dynamic> recipes = json.decode(snapshot.data.toString());
 
-      return ListView.builder(
-        itemBuilder: (BuildContext context, int index) {
-          Recipe recipe = Recipe.fromJson(recipe[index]);
+        return ListView.builder(
+          itemBuilder: (BuildContext context, int index) {
+            Recipe recipe = Recipe.fromJson(recipes[index]);
 
-          return _buildCard(recipe.title, recipe.photo);
-    },
-    itemCount: recipe == null ? 0 : recipe.length,
+            return _buildCard(recipe.title, recipe.photo);
+          },
+          itemCount: recipes == null ? 0 : recipes.length,
+        );
+      }
     );
   }
-  );
-}
+
   Widget _buildCard(title, photo) {
     return SizedBox(
       //Poder redimencionar o tamanho
@@ -60,13 +62,10 @@ class HomeState extends State<Home> {
   }
 
   Widget _buildImage(photo) {
-    return Image.asset(
-        photo,
-        fit: BoxFit.fill,
-        height: 248);
+    return Image.asset(photo, fit: BoxFit.fill, height: 248);
   }
 
-  Widget _buildText(title){
+  Widget _buildText(title) {
     return Positioned(
       //Para posicionar o elemento na tela
       bottom: 10,
@@ -79,7 +78,6 @@ class HomeState extends State<Home> {
   }
 
   PreferredSizeWidget _buildAppBar() {
-    return AppBar(title: Text('Receitas Brasileiras'), centerTitle: true);
+    return AppBar(title: Text('Brazilian Recipes'), centerTitle: true);
   }
 }
-
